@@ -1,0 +1,94 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/aspect-ratio";
+@plugin "tailwindcss-animate";
+
+@theme {
+	--radius: 0.5rem;
+
+  --color-red: #e93147;
+  --color-orange: #ec7500;
+  --color-yellow: #e0ac00;
+  --color-green: #08b94e;
+  --color-cyan: #00bfbc;
+  --color-blue: #086ddd;
+  --color-purple: #7852ee;
+  --color-pink: #d53984;
+  --color-base-00: #ffffff;
+  --color-base-05: #fcfcfc;
+  --color-base-10: #fafafa;
+  --color-base-20: #f6f6f6;
+  --color-base-25: #e3e3e3;
+  --color-base-30: #e0e0e0;
+  --color-base-35: #d4d4d4;
+  --color-base-40: #bdbdbd;
+  --color-base-50: #ababab;
+  --color-base-60: #707070;
+  --color-base-70: #5c5c5c;
+  --color-base-100: #222222;
+	--color-accent: tomato;
+	--color-accent-1: tomato;
+	--color-accent-2: tomato;
+
+  /* --color-divider: var(--divider-color);
+  --color-tx-faint: var(--text-faint);
+  --color-tx-muted: var(--text-muted); */
+
+	--color-hover: var(--background-modifier-hover);
+
+
+	--color-background: 0 0% 100%;
+	--color-foreground: 222.2 47.4% 11.2%;
+	--color-muted: 210 40% 96.1%;
+	--color-muted-foreground: 215.4 16.3% 46.9%;
+	--color-popover: 0 0% 100%;
+	--color-popover-foreground: 222.2 47.4% 11.2%;
+	--color-card: 0 0% 100%;
+	--color-card-foreground: 222.2 47.4% 11.2%;
+	--color-border: 214.3 31.8% 91.4%;
+	--color-input: 214.3 31.8% 91.4%;
+	--color-primary: 222.2 47.4% 11.2%;
+	--color-primary-foreground: 210 40% 98%;
+	--color-secondary: 210 40% 96.1%;
+	--color-secondary-foreground: 222.2 47.4% 11.2%;
+	--color-accent: 210 40% 96.1%;
+	--color-accent-foreground: 222.2 47.4% 11.2%;
+	--color-destructive: 0 72.2% 50.6%;
+	--color-destructive-foreground: 210 40% 98%;
+	--color-ring: 215 20.2% 65.1%;
+	--color-chart-1: 12 76% 61%;
+	--color-chart-2: 173 58% 39%;
+	--color-chart-3: 197 37% 24%;
+	--color-chart-4: 43 74% 66%;
+	--color-chart-5: 27 87% 67%;
+}
+
+@theme inline {
+	--color-hover: var(--background-modifier-hover);
+}
+
+@utility container {
+	margin-inline: auto;
+	padding-inline: 2rem;
+	@variant sm {
+		max-width: 640px;
+	}
+	@variant md {
+		max-width: 768px;
+	}
+	@variant lg {
+		max-width: 1024px;
+	}
+	@variant xl {
+		max-width: 1280px;
+	}
+	@variant 2xl {
+		max-width: 1400px;
+	}
+}
+
+@layer base {
+	body {
+		background-color: oklch(var(--color-background));
+		color: oklch(var(--color-foreground));
+	}
+}
