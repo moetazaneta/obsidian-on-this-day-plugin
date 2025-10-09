@@ -4,7 +4,7 @@
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
 	"description": "See what happened on this day in your daily notes. Inspired by Day One.",
-	"author": "tem",
+	"author": "moetazaneta",
 	"authorUrl": "https://github.com/moetazaneta",
 	"isDesktopOnly": false,
 	"css": [
