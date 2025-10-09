@@ -41,10 +41,10 @@ export class OtdSettingTab extends PluginSettingTab {
 		new Setting(containerEl)
 			.setName('Which Month')
 			.setDesc(`
-Numbers of months to show. Separate with commas.
-e.g. 1,6
-1 is 1 month ago
-6 is 6 months ago
+Numbers of months to show. Separate with commas. e.g. 1,6.
+Leave empty to show all months.
+1 is 1 month ago,
+1,6 is 1 and 6 months ago
 `)
 			.addText(text => text
 				.setPlaceholder('e.g. 1,6')
