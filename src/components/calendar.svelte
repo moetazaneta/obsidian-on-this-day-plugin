@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { cn } from "@/lib/utils";
-	import ChevronLeftIcon from "@/svelte/components/icons/chevron-left-icon.svelte";
-	import ChevronRightIcon from "@/svelte/components/icons/chevron-right-icon.svelte";
-	import MonthSelect from "@/svelte/components/month-select.svelte";
-	import YearSelect from "@/svelte/components/year-select.svelte";
-	import { getNotesContext } from "@/svelte/context";
+	import ChevronLeftIcon from "@/components/icons/chevron-left-icon.svelte";
+	import ChevronRightIcon from "@/components/icons/chevron-right-icon.svelte";
+	import MonthSelect from "@/components/month-select.svelte";
+	import YearSelect from "@/components/year-select.svelte";
+	import { getNotesContext } from "@/context";
 
   let {
     selectedDate = $bindable(),

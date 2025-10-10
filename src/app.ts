@@ -4,7 +4,7 @@ import { type OtdSettings } from "@/settings";
 import { OtdNotes } from "@/notes";
 import { mount, unmount } from "svelte";
 
-export class OtdSvelteApp {
+export class OtdApp {
   private root: {};
 
   constructor(

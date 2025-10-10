@@ -1,12 +1,12 @@
 import { ItemView, TFile, WorkspaceLeaf } from "obsidian";
-import { OtdSvelteApp } from "./app";
+import { OtdApp } from "./app";
 import { type OtdSettings } from "@/settings";
 import { OtdNotes } from "@/notes";
 
-export const VIEW_TYPE_OTD_SVELTE = "on-this-day-svelte";
+export const VIEW_TYPE_OTD = "tem-on-this-day";
 
-export class OtdSvelteView extends ItemView {
-	private root: OtdSvelteApp;
+export class OtdView extends ItemView {
+	private root: OtdApp;
 	private settings: OtdSettings;
 	private notes: OtdNotes;
 
@@ -22,15 +22,15 @@ export class OtdSvelteView extends ItemView {
 	}
 
 	getViewType() {
-		return VIEW_TYPE_OTD_SVELTE;
+		return VIEW_TYPE_OTD;
 	}
 
 	getDisplayText() {
-		return "On This Day (Svelte)";
+		return "On This Day";
 	}
 
 	getIcon() {
-		return "calendar-with-checkmark";
+		return "calendar-days";
 	}
 
 	async onClose() {
@@ -40,7 +40,7 @@ export class OtdSvelteView extends ItemView {
 	}
 
 	async onOpen() {
-		this.root = new OtdSvelteApp(this.contentEl, this.app, this.settings, this.notes);
+		this.root = new OtdApp(this.contentEl, this.app, this.settings, this.notes);
 	}
 
 	async reindex(file?: TFile) {

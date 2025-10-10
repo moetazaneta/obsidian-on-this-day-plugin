@@ -2,9 +2,9 @@
 	import type { OtdNotes } from "@/notes";
 	import type { OtdSettings } from "@/settings";
 	import type { App } from "obsidian";
-	import { setAppContext, setSettingsContext, setNotesContext } from '@/svelte/context';
-  import Calendar from "./calendar.svelte";
-	import Entries from "@/svelte/components/entries.svelte";
+	import { setAppContext, setSettingsContext, setNotesContext } from '@/context';
+  import Calendar from "@/components/calendar.svelte";
+	import Entries from "@/components/entries.svelte";
 
   let {
     app,

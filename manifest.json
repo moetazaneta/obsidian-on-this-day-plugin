@@ -1,10 +1,10 @@
 {
-	"id": "on-this-day",
-	"name": "On This Day",
+	"id": "tem-on-this-day",
+	"name": "On This Day With Calendar",
 	"version": "1.0.1",
 	"minAppVersion": "0.15.0",
 	"description": "See what happened on this day in your daily notes. Inspired by Day One.",
-	"author": "moetazaneta",
+	"author": "tem",
 	"authorUrl": "https://github.com/moetazaneta",
 	"isDesktopOnly": false,
 	"css": [

@@ -1,14 +1,14 @@
 import { Plugin } from 'obsidian';
 import { OtdSettingTab, DEFAULT_SETTINGS, type OtdSettings } from 'src/settings';
-import { OtdSvelteView, VIEW_TYPE_OTD_SVELTE } from '@/svelte/view';
+import { OtdView, VIEW_TYPE_OTD } from '@/view';
 
 export default class OtdPlugin extends Plugin {
 	public settings: OtdSettings;
-	private view: OtdSvelteView;
+	private view: OtdView;
 
 	onunload() {
 		this.app.workspace
-			.getLeavesOfType(VIEW_TYPE_OTD_SVELTE)
+			.getLeavesOfType(VIEW_TYPE_OTD)
 			.forEach((leaf) => leaf.detach());
 	}
 
@@ -18,8 +18,8 @@ export default class OtdPlugin extends Plugin {
 		this.addSettingTab(new OtdSettingTab(this.app, this));
 
 		this.registerView(
-			VIEW_TYPE_OTD_SVELTE,
-			(leaf) => (this.view = new OtdSvelteView(leaf, this.settings))
+			VIEW_TYPE_OTD,
+			(leaf) => (this.view = new OtdView(leaf, this.settings))
 		);
 
 		if (this.app.workspace.layoutReady) {
@@ -33,9 +33,9 @@ export default class OtdPlugin extends Plugin {
 	}
 
 	initLeaf() {
-		if (this.app.workspace.getLeavesOfType(VIEW_TYPE_OTD_SVELTE).length === 0) {
+		if (this.app.workspace.getLeavesOfType(VIEW_TYPE_OTD).length === 0) {
 			this.app.workspace.getRightLeaf(false)?.setViewState({
-				type: VIEW_TYPE_OTD_SVELTE,
+				type: VIEW_TYPE_OTD,
 			});
 		}
 	}

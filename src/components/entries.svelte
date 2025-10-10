@@ -1,8 +1,7 @@
 <script lang="ts">
-	import ChevronLeftIcon from "@/svelte/components/icons/chevron-left-icon.svelte";
-	import ChevronRightIcon from "@/svelte/components/icons/chevron-right-icon.svelte";
-  import { getAppContext, getNotesContext, getSettingsContext } from "@/svelte/context";
-	import { TFile } from "obsidian";
+	import ChevronLeftIcon from "@/components/icons/chevron-left-icon.svelte";
+	import ChevronRightIcon from "@/components/icons/chevron-right-icon.svelte";
+  import { getAppContext, getNotesContext } from "@/context";
 
   let {
     selectedDate = $bindable(),
