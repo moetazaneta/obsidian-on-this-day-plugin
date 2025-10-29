@@ -65,6 +65,15 @@
     return (await daysPage).map(day => day.date);
   })
 
+  const weekDays = $derived.by(async () => {
+    const days = await daysPage
+    console.log(days);
+    console.log(window.moment(days[0].date).format('dd'));
+    return Array.from({ length: 7 }, (_, index) => {
+      return window.moment(days[index].date).format('dd');
+    });
+  });
+
   async function createDay(date: Date, selectedDate: Date): Promise<Day> {
     const mdate = window.moment(date);
     const now = new Date();
@@ -163,9 +172,12 @@
     </div>
   </div>
   <div class="grid grid-cols-7">
-    {#await daysPage}
+    {#await Promise.all([daysPage, weekDays])}
       <div></div>
-    {:then days}
+    {:then [days, weekDays]}
+      {#each weekDays as day}
+        <div class="text-center text-base-50">{day}</div>
+      {/each}
       {#each days as day}
         <div
           class={cn(
