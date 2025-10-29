@@ -31,7 +31,7 @@
     entries: OtdEntry[];
   }
 
-  const daysPage = $derived.by(() => {
+  const daysPage = $derived.by(async () => {
     const firstDayOfMonth = new Date(visibleYear, visibleMonth, 1);
     const lastDayOfMonth = new Date(visibleYear, visibleMonth + 1, 0);
     const daysInMonth = lastDayOfMonth.getDate();
@@ -40,7 +40,7 @@
 
     for (let i = 0; i < firstDayOfMonth.getDay(); i++) {
       dayPromises.push(createDay(
-        new Date(visibleYear, visibleMonth, i - 2),
+        new Date(visibleYear, visibleMonth, i - firstDayOfMonth.getDay() + 1),
         selectedDate,
       ));
     }
@@ -68,8 +68,6 @@
 
   const weekDays = $derived.by(async () => {
     const days = await daysPage
-    console.log(days);
-    console.log(window.moment(days[0].date).format('dd'));
     return Array.from({ length: 7 }, (_, index) => {
       return window.moment(days[index].date).format('dd');
     });
