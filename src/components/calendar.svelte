@@ -5,6 +5,7 @@
 	import MonthSelect from "@/components/month-select.svelte";
 	import YearSelect from "@/components/year-select.svelte";
 	import { getNotesContext } from "@/context";
+	import type { OtdEntry } from "@/notes";
 
   let {
     selectedDate = $bindable(),
@@ -27,7 +28,7 @@
     today: boolean;
     past: boolean;
     future: boolean;
-    notesCount: number;
+    entries: OtdEntry[];
   }
 
   const daysPage = $derived.by(() => {
@@ -86,7 +87,7 @@
       today: mdate.isSame(now, 'day'),
       past: mdate.isBefore(now, 'day'),
       future: mdate.isAfter(now, 'day'),
-      notesCount: entries.length,
+      entries,
     }
   }
 
@@ -144,6 +145,13 @@
       }
     });
   });
+
+  function isEntryRecent(entry: OtdEntry, day: Day): boolean {
+    return entry.files.some(file => (
+      window.moment(file.date).isSame(window.moment(day.date), 'month')
+      || window.moment(file.date).isAfter(window.moment(day.date))
+    ));
+  }
 </script>
 
 <div class="flex flex-col gap-2">
@@ -205,11 +213,11 @@
             {day.date.getDate()}
           </div>
           <div class="flex flex-wrap gap-px justify-center">
-            {#each Array.from({ length: day.notesCount }) as _, index}
+            {#each day.entries as entry}
             <div class={cn(
               "w-1 h-1 rounded-full bg-current/40",
               {
-                "bg-current": index === 0 && !day.future,
+                "bg-current": isEntryRecent(entry, day),
               }
             )} ></div>
             {/each}

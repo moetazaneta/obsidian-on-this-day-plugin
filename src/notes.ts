@@ -2,6 +2,15 @@ import { getDateFromFile } from "@/lib/utils";
 import type { OtdSettings } from "@/settings";
 import { Vault, normalizePath, TFile } from "obsidian";
 
+export type OtdEntry = {
+  name: string;
+  files: {
+    file: TFile;
+    title: string;
+    date: moment.Moment | null;
+  }[];
+}
+
 export class OtdNotes {
   private dailyNotes = new Map<string, TFile[]>();
   public earliestNote: moment.Moment | null = null;
@@ -128,7 +137,7 @@ export class OtdNotes {
     return dates;
   }
 
-  public async getEntries(m: moment.Moment) {
+  public async getEntries(m: moment.Moment): Promise<OtdEntry[]> {
     const groups = this.getDateGroups(m);
 
     return Promise.all(groups.map(async (group) => {
@@ -137,6 +146,7 @@ export class OtdNotes {
         return {
           file,
           title,
+          date: getDateFromFile(file),
         };
       }));
 
