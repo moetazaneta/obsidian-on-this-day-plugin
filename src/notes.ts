@@ -158,13 +158,25 @@ export class OtdNotes {
   }
 
   async getTitle(note: TFile) {
-    const text = await note.vault.cachedRead(note);
-    // ---
-    // attributes: ...
-    // ---
-    const content = text.split('---')[2]
-    const contentParts = content.split('\n')
-    const textPart = contentParts.find(part => part !== '') ?? ''
-    return textPart.replace(/^#*/, '').trim();
+    try {
+      const text = await note.vault.cachedRead(note);
+      const content = this.getContentWithoutMetadata(text);
+      const contentParts = content.split('\n')
+      const titleMd = contentParts[0]!;
+      const title = titleMd.replace(/^#*/, '').trim();
+      return title;
+    } catch (error) {
+      return 'Broken note';
+    }
+  }
+
+  private getContentWithoutMetadata(text: string) {
+    const trimmed = text.trim();
+    if (!trimmed.startsWith('---')) return text;
+
+    const content = trimmed.split('---')[2];
+    if (!content) return text;
+
+    return content.trim();
   }
 }
